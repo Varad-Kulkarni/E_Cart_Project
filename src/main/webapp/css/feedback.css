@@ -1,0 +1,139 @@
+.beforeimg {
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  *{
+    font-family: 'Bebas Neue', cursive;
+  }
+  body{
+    font-size: 1.2rem;
+  }
+  
+  .beforeimg::before {
+    content: '';
+    background-color: rgba(34, 112, 156, 0.746);
+
+    position: absolute;
+    opacity: 0.3;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 50vh;
+    z-index: -1;
+  }
+  
+ 
+  nav {
+    background: transparent;
+    margin: 0px;
+    padding: 0px;
+  }
+  body{
+    color :black;
+    font-size: 1rem;
+  }
+  
+  footer{
+    background-color:transparent;
+  color: #000000;
+  }
+  .nav-link{
+    color:black;
+  }
+   
+  
+  
+  /* navbar underline effect */
+  .navbar .navbar-nav .nav-link:hover {
+    color: #000000;
+  }
+  @media only screen and (min-width: 960px) {
+    .navbar .navbar-nav .nav-link {
+      padding: 1em 0.7em;
+    }
+    .navbar {
+      padding: 0;
+    }
+    .navbar .navbar-brand {
+      padding: 0 0.7em;
+    }
+  }
+  .navbar .navbar-nav .nav-link {
+    position: relative;
+  }
+  .navbar .navbar-nav .nav-link::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: #000000;
+    color: transparent;
+    width: 0%;
+    content: '';
+    height: 3px;
+    transition: all 0.5s;
+  }
+  .navbar .navbar-nav .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  
+  
+  
+  
+  footer{
+    background-color:transparent;
+  color: #000000;
+  }
+  
+  footer .row .col img{
+    height: 3vh;
+  }
+  footer .row .col img:hover{
+    box-shadow: 0px 0px 12px 12px rgba(50, 164, 230, 0.712);
+  }
+  #insta:hover{
+    box-shadow: 0px 0px 12px 12px rgba(143, 33, 177, 0.623);
+  }
+  #github:hover{
+    box-shadow: 0px 0px 12px 12px rgba(10, 1, 1, 0.712);
+  }
+  #fb:hover{
+    box-shadow: 0px 0px 12px 12px rgba(8, 81, 122, 0.986);
+  }
+  footer .row{
+    margin: 2vh;
+    /* margin-left: 5vh; */
+    width:35vh;
+  }
+   
+  
+  
+  
+  #col1{
+      border-right: 3px solid grey;
+      border-radius: 4px;
+  }
+  ul{
+      list-style: none;
+
+  }
+  #grid{
+      margin-top:1.3rem;
+      margin-bottom:1.3rem;
+  }
+  .questions li{
+      border: 2px solid #fee5d4;
+      border-radius: 5px;
+      padding: 5px; 
+      padding-left:10px;
+      padding-right:10px;
+      
+  }

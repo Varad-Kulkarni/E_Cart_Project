@@ -1,0 +1,45 @@
+@charset "ISO-8859-1";
+.image-top {
+    position: absolute;
+    top: 15%;
+    left: 20%;
+}
+.wallpaper-heading {
+    font-size: 50px;
+    color: rgb(244 232 232);
+    line-height: 1.5;
+    font-family: sans-serif;
+}
+.dd {
+    width: 130px;
+    height: 30px;
+}
+.search {
+    width: 330px;
+    height: 30px;
+    color: rgb(244 232 232);
+}
+
+@media only screen and (max-width: 600px) {
+
+    .image-top {
+        top: 15%;
+        left: 5%;
+    }
+
+
+    .wallpaper-heading {
+        font-size: 25px;
+        line-height: 2.5;
+    }
+
+    .dd {
+        width: 330px;
+        margin-bottom: 20px;
+    }
+
+    .search {
+        width: 330px;
+    }
+
+}
