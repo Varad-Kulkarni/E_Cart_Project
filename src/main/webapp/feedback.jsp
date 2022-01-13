@@ -7,9 +7,18 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%
-User auth = (User) request.getSession().getAttribute("auth");
+/*User auth = (User) request.getSession().getAttribute("auth");
 if (auth != null) {
 	request.setAttribute("auth", auth);
+}*/
+
+User auth = (User) request.getSession().getAttribute("auth");
+User adm = (User) request.getSession().getAttribute("adm");
+if (auth != null) {
+	request.setAttribute("auth", auth);
+}
+else if (adm != null) {
+	request.setAttribute("adm", adm);
 }
 
 productDao pd=new productDao(DbCon.getConnectio());
@@ -85,17 +94,17 @@ Give your valueble feedback
 
       <div id="col2" class="col">
      <h3><center> Feedback Form</center></h3>
-     <form>
+     <form action="feedbackServlet">
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          <input type="email" class="form-control" id="exampleInputEmail1" name="f_mail" aria-describedby="emailHelp" placeholder="Enter email">
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Feedback</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" name="f_text" rows="3"></textarea>
           </div>
-          <button  onclick="clicked()" class="btn btn-primary">Submit</button>
+          <button class="btn btn-primary">Submit</button>
 
       </div>
     </div>
@@ -105,10 +114,10 @@ Give your valueble feedback
     <center>Contact Us</center>
     <center>
    <div class="row">
-     <div class="col ml-3 col-"><a href="#"><img id="fb" src="http://www.newdesignfile.com/postpic/2009/12/download-facebook-logo-for-website_279444.jpg"></a></div>
-     <div class="col"><a href="#"><img id="insta" src="https://workingwithdog.com/wp-content/uploads/2016/05/new_instagram_logo.jpg"></a></div>
-     <div class="col"><a href="#"><img id="github" src="https://gh-prod-ruby-images.s3.amazonaws.com/uploads/growth_study_post/logo/10/github_logo.png"></a></div>
-     <div class="col"><a href="#"><img id="linkedin" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Linkedin.svg/1200px-Linkedin.svg.png"></a></div>
+     <div class="col ml-3 col-"><a href="https://www.facebook.com/"><img id="fb" src="http://www.newdesignfile.com/postpic/2009/12/download-facebook-logo-for-website_279444.jpg"></a></div>
+     <div class="col"><a href="https://www.instagram.com/"><img id="insta" src="https://workingwithdog.com/wp-content/uploads/2016/05/new_instagram_logo.jpg"></a></div>
+     <div class="col"><a href="https://github.com/"><img id="github" src="https://gh-prod-ruby-images.s3.amazonaws.com/uploads/growth_study_post/logo/10/github_logo.png"></a></div>
+     <div class="col"><a href="https://www.linkedin.com/"><img id="linkedin" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Linkedin.svg/1200px-Linkedin.svg.png"></a></div>
      <div class="w-100"></div>
    </div>
  </center>

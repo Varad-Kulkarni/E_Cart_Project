@@ -19,34 +19,45 @@ import com.ecome.connections.DbCon;
 @WebServlet("/loginServlet")
 public class loginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.sendRedirect("login.jsp");
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		try(PrintWriter out=response.getWriter()) {
-			String email=request.getParameter("login-email");
-			String password=request.getParameter("login-password");
+		try (PrintWriter out = response.getWriter()) {
+			String email = request.getParameter("login-email");
+			String password = request.getParameter("login-password");
+			int len = email.length();
+			String eq = "cart.com";
+			String last8 = email.substring(len - 8);
 			try {
-				userDao userdao=new userDao(DbCon.getConnectio());
-				User user=userdao.userLogin(email, password);
-				
-				if(user!=null) {
-					out.print("user login");
-					request.getSession().setAttribute("auth",user);
-					response.sendRedirect("index.jsp");
+				userDao userdao = new userDao(DbCon.getConnectio());
+				User user = userdao.userLogin(email, password);
+
+				if (user != null) {
+					if (last8.equals(eq)) {
+						request.getSession().setAttribute("adm", user);
+						response.sendRedirect("index.jsp");
+					} else {
+						out.print("user login");
+						request.getSession().setAttribute("auth", user);
+						response.sendRedirect("index.jsp");
+					}
+				} else {
+					out.print("<script type=\"text/javascript\">");
+					out.println("alert('Incorrect Email or Password');");
+					out.println("location='login.jsp';");
+					out.println("</script>");
 				}
-				else {
-					out.print("User login failed");
-				}
-			}
-			catch(Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

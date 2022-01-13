@@ -7,8 +7,12 @@
 
 <%
 User auth = (User) request.getSession().getAttribute("auth");
+User adm = (User) request.getSession().getAttribute("adm");
 if (auth != null) {
 	request.setAttribute("auth", auth);
+}
+else if (auth != null) {
+	request.setAttribute("adm", adm);
 }
 
 ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-list");
@@ -31,7 +35,7 @@ if (cart_list != null) {
 <body>
 	<%@include file="includes/navbar.jsp"%>
 
-	<div class="container my-3">
+	<div class="container my-3 mt-5" style="min-height : 73vh">
 		<div class="d-flex py-3">
 			<h3>Total price=Rs. ${(total>0)?total:0 }</h3>
 			<a class="mx-3 btn btn-primary" href="checkoutServlet">Check out</a>

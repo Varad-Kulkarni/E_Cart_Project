@@ -11,6 +11,7 @@ public class User {
 	}
 	
 	public User(int id, String name, String email, String password) {
+		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -40,4 +41,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
+	}
+	
 }

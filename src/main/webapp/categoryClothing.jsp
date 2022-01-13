@@ -7,9 +7,18 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%
-User auth = (User) request.getSession().getAttribute("auth");
+/*User auth = (User) request.getSession().getAttribute("auth");
 if (auth != null) {
 	request.setAttribute("auth", auth);
+}*/
+
+User auth = (User) request.getSession().getAttribute("auth");
+User adm = (User) request.getSession().getAttribute("adm");
+if (auth != null) {
+	request.setAttribute("auth", auth);
+}
+else if (adm != null) {
+	request.setAttribute("adm", adm);
 }
 
 productDao pd=new productDao(DbCon.getConnectio());
@@ -46,20 +55,20 @@ if(cart_list!=null){
 	<%@include file="includes/navbar.jsp"%>
 
 	<div class="container">
-		<div class="card-header my-3">Clothing</div>
+		<div class="card-header border-dark text-warning my-3" style="background-color: #355482;">Clothing</div>
 		<div class="row">
 		
 		<%if(!prod.isEmpty()){
 			for(product p:prod){ %>
-				<div class="col-md-3 my-3">
-				<div class="card" style="width: 18rem;">
+				<div class="col-md-3 my-3" style="margin: 35px;">
+				<div class="card border-dark text-warning" style="width: 18rem; background-color: #192e4d;">
 					<img src="images/<%=p.getImage() %>" class="card-img-top" alt="card image cap">
 					<div class="card-body">
 						<h5 class="card-title">Name :<%=p.getName() %></h5>
 						<h6 class="price">Price : Rs. <%=p.getPrice()%></h6>
 						
 						<div class="mt-3 d-flex justify-content-between">
-						<a href="cartServlet?id=<%=p.getId() %>" class="btn btn-outline-info">Add to cart</a>
+						<a href="cartServlet?id=<%=p.getId() %>" class="btn btn-outline-light">Add to cart</a>
 						<a href="orderNowServlet?quantity=1&id=<%=p.getId() %>" class="btn btn-outline-success">Buy now</a>
 						</div>
 					</div>

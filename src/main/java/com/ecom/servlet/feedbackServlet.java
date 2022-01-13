@@ -9,35 +9,45 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ecome.connections.DbCon;
+import com.ecome.dao.feedbackDao;
+import com.ecome.model.Feedback;
+
 /**
- * Servlet implementation class logoutServlet
+ * Servlet implementation class feedbackServlet
  */
-@WebServlet("/logoutServlet")
-public class logoutServlet extends HttpServlet {
+@WebServlet("/feedbackServlet")
+public class feedbackServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try(PrintWriter out=response.getWriter()) {
-			if(request.getSession().getAttribute("auth")!=null) {
-				request.getSession().removeAttribute("auth");
-				response.sendRedirect("login.jsp");
-			}
-			else if(request.getSession().getAttribute("adm")!=null) {
-				request.getSession().removeAttribute("adm");
-				response.sendRedirect("login.jsp");
+		try(PrintWriter out=response.getWriter()){
+			String email=request.getParameter("f_mail");
+			String feed=request.getParameter("f_text");
+			
+			Feedback fe=new Feedback();
+			fe.setEmail(email);
+			fe.setFeedback_text(feed);
+			
+			feedbackDao fdao=new feedbackDao(DbCon.getConnectio());
+			boolean res=fdao.insert_Feedback(fe);
+			
+			if(res) {
+				response.sendRedirect("index.jsp");
 			}
 			else {
-				response.sendRedirect("index.jsp");
+				out.println("Oops ! Something wrong happened");
 			}
 		}
 		catch(Exception e) {
-			e.printStackTrace();;
+			System.out.println(e.getMessage());
 		}
 	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
 }
-

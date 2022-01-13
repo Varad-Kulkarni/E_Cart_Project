@@ -8,8 +8,11 @@
 
 <%
 User auth = (User) request.getSession().getAttribute("auth");
+User adm = (User) request.getSession().getAttribute("adm");
 if (auth != null) {
 	request.setAttribute("auth", auth);
+} else if (adm != null) {
+	request.setAttribute("adm", adm);
 }
 
 productDao pd = new productDao(DbCon.getConnectio());
@@ -40,16 +43,28 @@ if (cart_list != null) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
 <link
 	href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
 	rel="stylesheet">
 <%@include file="includes/head.jsp"%>
 
+<style>
+        /* Modify the background color */
+         
+        .navbar-custom {
+            background-color: lightgreen;
+        }
+        /* Modify brand and text color */
+         
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-text {
+            color: green;
+        }
+    </style>
+
 </head>
 <body>
 	<%@include file="includes/navbar.jsp"%>
-
 
 
 	<header>
@@ -61,8 +76,9 @@ if (cart_list != null) {
 					<div class="text-white">
 						<h1 class="mb-3">WELCOME TO SHOPZ-NOW!!!</h1>
 						<h4 class="mb-3">Get your latest styles...</h4>
-						<a class="btn btn-outline-light btn-lg" href="categoryClothing.jsp" role="button">See latest fashion trends
-							</a>
+						<a class="btn btn-outline-light btn-lg"
+							href="categoryClothing.jsp" role="button">See latest fashion
+							trends </a>
 					</div>
 				</div>
 			</div>
@@ -73,28 +89,29 @@ if (cart_list != null) {
 
 
 	<div class="container">
-		<div class="card-header my-3">Todays Collection</div>
+		<div class="card-header my-3 card text-warning border-info mb-3" style="background-color: #355482;">Todays Collection</div>
 		<div class="row">
 
 			<%
 			if (!prod.isEmpty()) {
 				for (product p : prod) {
 			%>
-			<div class="col-md-3 my-3">
-				<div class="card" style="width: 18rem;">
+			<div class="col-md-3 my-3" style="margin: 35px;">
+				<div class="card text-warning border-dark mb-3" style="width: 18rem; background-color: #192e4d;">
 					<img src="images/<%=p.getImage()%>" class="card-img-top"
 						alt="card image cap">
 					<div class="card-body">
 						<h5 class="card-title">
 							Name :<%=p.getName()%></h5>
 						<h6 class="price">
-							Price : Rs. <%=p.getPrice()%></h6>
+							Price : Rs.
+							<%=p.getPrice()%></h6>
 						<h6 class="category">
 							Category :
 							<%=p.getCategory()%></h6>
 						<div class="mt-3 d-flex justify-content-between">
 							<a href="cartServlet?id=<%=p.getId()%>"
-								class="btn btn-outline-info">Add to cart</a> <a
+								class="btn btn-outline-light">Add to cart</a> <a
 								href="orderNowServlet?quantity=1&id=<%=p.getId()%>"
 								class="btn btn-outline-success">Buy now</a>
 						</div>

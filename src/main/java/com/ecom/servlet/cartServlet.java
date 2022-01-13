@@ -45,7 +45,10 @@ public class cartServlet extends HttpServlet {
 				for(Cart c:cartList) {
 					if(c.getId()==id) {
 						exists=true;
-						out.println("<h3> <style='color:red; text-align=center'>Item already exists in the cart <a href='cart.jsp'>Go to cart</a></h3>");
+						out.print("<script type=\"text/javascript\">");
+						out.println("alert('Product already exists in cart');");
+						out.println("location='index.jsp';");
+						out.println("</script>");
 					}
 				}
 				if(!exists) {

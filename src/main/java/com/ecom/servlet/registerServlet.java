@@ -48,10 +48,13 @@ public class registerServlet extends HttpServlet {
 			
 			if(i>0) {
 //				out.println("information saved successfully");
-				out.println("<html><body><h3> Information saved successifully </h3>Go to home <a href='index.jsp'>click here</a></body></html>");
+				response.sendRedirect("ThankYouRegister.jsp");
 			}
 			else {
-				out.println("Information processing failed");
+				out.print("<script type=\"text/javascript\">");
+				out.println("alert('Information processing failed');");
+				out.println("location='register.jsp';");
+				out.println("</script>");
 			}
 		}
 		catch(Exception e) {

@@ -3,12 +3,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	
-	<%
-	User auth=(User)request.getSession().getAttribute("auth");
-	if(auth!=null){
-		request.setAttribute("auth",auth);
-	}
-	%>
+<%
+/*User auth=(User)request.getSession().getAttribute("auth");
+if(auth!=null){
+	request.setAttribute("auth",auth);
+}*/
+
+User auth = (User) request.getSession().getAttribute("auth");
+User adm = (User) request.getSession().getAttribute("adm");
+if (auth != null) {
+	request.setAttribute("auth", auth);
+}
+else if (adm != null) {
+	request.setAttribute("adm", adm);
+}
+%>
 	
 <!DOCTYPE html>
 <html>
@@ -68,6 +77,6 @@
 <br>        
         
 
-	<%@include file="includes/footer.jsp"%>
+	<%//@include file="includes/footer.jsp"%>
 </body>
 </html>

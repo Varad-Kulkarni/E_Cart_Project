@@ -31,6 +31,10 @@ public class removeServlet extends HttpServlet {
 							break;
 						}
 					}
+					out.println("<script type=\"text/javascript\">");
+					out.println("alert('Product removed successfully');");
+//					out.println("location='cart.jsp';");
+					out.println("</script>");
 					response.sendRedirect("cart.jsp");
 				}
 			}
